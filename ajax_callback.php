@@ -2,13 +2,17 @@
 // ini_set("error_reporting", E_ALL);
 require_once('common_function.php');
 $response = [];
+
+
 if(isset($_POST) && !empty($_POST)){
+
 	$Domain = $_POST['url'];
 	$links = getinboundLinks($Domain);
 	
 	if(!empty($links)){
 		if(!empty($links)){
 			$unique_array = array_unique($links);
+
 
 			$searchword = 'mailto';
 			$searchword2 = 'tel';
@@ -27,7 +31,7 @@ if(isset($_POST) && !empty($_POST)){
 			    		if($v != '#'){
     				    	if(!preg_match("/\b$searchword\b/i", $v)){
 								if(!preg_match("/\b$searchword2\b/i", $v)){
-									
+
 			    			 		$matches[$k] = str_replace($v, $Domain.'/'.$v, $v);
 			    			 	}
 		    			 	}
@@ -35,6 +39,7 @@ if(isset($_POST) && !empty($_POST)){
 			    	}
 			    }
 			}
+
 						
 			$html = '<table class="result_table" cellpadding="10"><tbody>';
 			$total_words = 0;

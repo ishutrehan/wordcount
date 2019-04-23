@@ -33,6 +33,7 @@ function getinboundLinks($domain_name) {
 						$nonfollow +=1;
 					} else if (strstr(strtolower($match[2]),$url_without_www) || !strstr(strtolower($match[2]),'http://')) {
 				     	$inbound += 1;
+
 				     	$inbound_links[] = $match[2];
 				 	}
 					else if (!strstr(strtolower($match[2]),$url_without_www) && strstr(strtolower($match[2]),'http://')) {
@@ -41,7 +42,41 @@ function getinboundLinks($domain_name) {
 				}
 			}
 		}
-		return $inbound_links;
+		if(!empty($inbound_links)){
+			foreach ($inbound_links as $key => $value) {
+			 	$url = $value;
+				$url_without_www = str_replace('https://','',$url);
+				$url_without_www = str_replace('http://','',$url_without_www);
+				$url_without_www = str_replace('www.','',$url_without_www);
+			 	$url_without_www = str_replace(strstr($url_without_www,'/'),'',$url_without_www);
+				$url_without_www = trim($url_without_www);
+				$input = @file_get_contents($value);
+
+			 	$regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
+				$inbound = 0;
+				$outbound = 0;
+				$nonfollow = 0;
+				$links = [];
+				if(preg_match_all("/$regexp/siU", $input, $matches, PREG_SET_ORDER)) {
+					foreach($matches as $match) {
+						if(!empty($match[2]) && !empty($match[3])) {
+							if(strstr(strtolower($match[2]),'URL:') || strstr(strtolower($match[2]),'url:') ) {
+								$nonfollow +=1;
+							} else if (strstr(strtolower($match[2]),$url_without_www) || !strstr(strtolower($match[2]),'http://')) {
+						     	$inbound += 1;
+						     	if($value != $match[2]){
+						     		$links[] = $match[2];
+						     	}
+						 	}
+							else if (!strstr(strtolower($match[2]),$url_without_www) && strstr(strtolower($match[2]),'http://')) {
+						     	$outbound += 1;
+						    }
+						}
+					}
+				}
+			}
+		}
+		return $links;
 	}
 }
 
