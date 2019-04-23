@@ -27,10 +27,7 @@ if(isset($_POST) && !empty($_POST)){
 			    		if($v != '#'){
     				    	if(!preg_match("/\b$searchword\b/i", $v)){
 								if(!preg_match("/\b$searchword2\b/i", $v)){
-									if(substr($Domain, -1) == '/') {
-									    $Domain = substr($string, 0, -1);
-									    $Domain = rtrim($Domain, '/');
-									}
+									
 			    			 		$matches[$k] = str_replace($v, $Domain.'/'.$v, $v);
 			    			 	}
 		    			 	}
