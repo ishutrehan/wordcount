@@ -44,13 +44,14 @@ function getinboundLinks($domain_name) {
 		}
 		if(!empty($inbound_links)){
 			foreach ($inbound_links as $key => $value) {
-			 	$url = $value;
+			 	echo $url = $value;
 				$url_without_www = str_replace('https://','',$url);
 				$url_without_www = str_replace('http://','',$url_without_www);
 				$url_without_www = str_replace('www.','',$url_without_www);
 			 	$url_without_www = str_replace(strstr($url_without_www,'/'),'',$url_without_www);
 				$url_without_www = trim($url_without_www);
-				$inputs = @file_get_contents($url);
+				echo $inputs = @file_get_contents($url);
+				die();
 				$links = [];
 			 	$regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
 				$inbound = 0;
