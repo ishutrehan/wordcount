@@ -42,23 +42,21 @@ function getinboundLinks($domain_name) {
 				}
 			}
 		}
+		$links = [];
+		$regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
+		$inbound = 0;
+		$outbound = 0;
+		$nonfollow = 0;
 		if(!empty($inbound_links)){
 			foreach ($inbound_links as $key => $value) {
-			 	echo $url = $value;
+			 	$url = $value;
 				$url_without_www = str_replace('https://','',$url);
 				$url_without_www = str_replace('http://','',$url_without_www);
 				$url_without_www = str_replace('www.','',$url_without_www);
 			 	$url_without_www = str_replace(strstr($url_without_www,'/'),'',$url_without_www);
 				$url_without_www = trim($url_without_www);
-				echo $inputs = @file_get_contents($url);
-				die();
-				$links = [];
-			 	$regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
-				$inbound = 0;
-				$outbound = 0;
-				$nonfollow = 0;
+				$inputs = @file_get_contents($url);
 				if($inputs != ''){
-				
 					if(preg_match_all("/$regexp/siU", $inputs, $matchesdata, PREG_SET_ORDER)) {
 						foreach($matchesdata as $match) {
 							if(!empty($match[2]) && !empty($match[3])) {
