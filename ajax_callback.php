@@ -8,7 +8,7 @@ if(isset($_POST) && !empty($_POST)){
 
 	$Domain = $_POST['url'];
 	$links = getinboundLinks($Domain);
-	
+
 	if(!empty($links)){
 		if(!empty($links)){
 			$unique_array = array_unique($links);
@@ -16,14 +16,22 @@ if(isset($_POST) && !empty($_POST)){
 
 			$searchword = 'mailto';
 			$searchword2 = 'tel';
+			$searchword3 = 'wp-login';
 			$matches = array();
+
 			foreach($unique_array as $k=>$v) {
 
 				if (filter_var($v, FILTER_VALIDATE_URL)) {
 					if(!preg_match("/\b$searchword\b/i", $v)){
 						if(!preg_match("/\b$searchword2\b/i", $v)){
-				        	$matches[$k] = $v;
-				        }
+							if(!preg_match("/\b$searchword3\b/i", $v)){
+								if($v != 'https://wordpress.org'){
+									if($v != 'https://wordpress.org/'){
+						        		$matches[$k] = $v;
+									}
+								}
+					        }
+					    }
 					}
 			    }else{
 
@@ -31,6 +39,7 @@ if(isset($_POST) && !empty($_POST)){
 			    		if($v != '#'){
     				    	if(!preg_match("/\b$searchword\b/i", $v)){
 								if(!preg_match("/\b$searchword2\b/i", $v)){
+
 
 			    			 		$matches[$k] = str_replace($v, $Domain.'/'.$v, $v);
 			    			 	}
