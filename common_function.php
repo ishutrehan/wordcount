@@ -43,9 +43,7 @@ function getinboundLinks($domain_name) {
 			}
 		}
 		if(!empty($inbound_links)){
-			echo "<pre>";
-			print_r($inbound_links);
-			echo "</pre>";
+		
 			foreach ($inbound_links as $key => $value) {
 			 	$url = $value;
 				$url_without_www = str_replace('https://','',$url);
@@ -61,6 +59,9 @@ function getinboundLinks($domain_name) {
 				$nonfollow = 0;
 				$links = [];
 				if(preg_match_all("/$regexp/siU", $input, $matches, PREG_SET_ORDER)) {
+					echo "<pre>";
+					print_r($matches);
+					echo "</pre>";
 					foreach($matches as $match) {
 						if(!empty($match[2]) && !empty($match[3])) {
 							if(strstr(strtolower($match[2]),'URL:') || strstr(strtolower($match[2]),'url:') ) {
