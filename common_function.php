@@ -84,7 +84,10 @@ function getinboundLinks($domain_name) {
 
 function get_word_count($url){
 	$data =  getUrlmetaData($url);
-	$tags = $data['title'].' '. $data['metaTags']['description']['value'];
+	$tags = '';
+	if(isset($data['metaTags']['description'])){
+		$tags = $data['title'].' '. $data['metaTags']['description']['value'];
+	}
 	$meta_count = str_word_count($tags);
 	
 	$str = file_get_contents($url);
