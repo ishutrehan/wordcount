@@ -6,6 +6,7 @@ jQuery(function(){
      jQuery.ajax({
       url: 'https://wordcount.weglot.com/data',
       type: "GET",
+      dataType: 'json',
       data:jQuery('.submit_url').serialize(),
       beforeSend: function(){
         jQuery('.result_section').show();
