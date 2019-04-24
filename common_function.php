@@ -216,7 +216,7 @@ function Scan ($url)
 
     if (SkipURL ($url))
     {
-        echo "Skip URL $url" . NL;
+        // echo "Skip URL $url" . NL;
         return false;
     }
     
@@ -231,14 +231,14 @@ function Scan ($url)
     }
 
 
-    echo "Scan $url" . NL;
+    // echo "Scan $url" . NL;
 
     $headers = get_headers ($url, 1);
 
     // Handle pages not found
     if (strpos ($headers[0], "404") !== false)
     {
-        echo "Not found: $url" . NL;
+        // echo "Not found: $url" . NL;
         return false;
     }
 
@@ -246,13 +246,13 @@ function Scan ($url)
     if (strpos ($headers[0], "301") !== false)
     {   
         $url = $headers["Location"];     // Continue with new URL
-        echo "Redirected to: $url" . NL;
+        // echo "Redirected to: $url" . NL;
     }
     // Handle other codes than 200
     else if (strpos ($headers[0], "200") == false)
     {
         $url = $headers["Location"];
-        echo "Skip HTTP code $headers[0]: $url" . NL;
+        // echo "Skip HTTP code $headers[0]: $url" . NL;
         return false;
     }
 
@@ -273,19 +273,19 @@ function Scan ($url)
     {
         if ($content_type == "" && IGNORE_EMPTY_CONTENT_TYPE)
         {
-            echo "Info: Ignoring empty Content-Type." . NL;
+            // echo "Info: Ignoring empty Content-Type." . NL;
         }
         else
         {
             if ($content_type == "")
             {
-                echo "Info: Content-Type is not sent by the web server. Change " .
+             /*   echo "Info: Content-Type is not sent by the web server. Change " .
                      "'IGNORE_EMPTY_CONTENT_TYPE' to 'true' in the sitemap script " .
-                     "to scan those pages too." . NL;
+                     "to scan those pages too." . NL;*/
             }
             else
             {
-                echo "Info: $url is not a website: $content[0]" . NL;
+                // echo "Info: $url is not a website: $content[0]" . NL;
             }
             return false;
         }
@@ -327,6 +327,7 @@ function Scan ($url)
 
         if (Scan ($next_url))
         {
+        	echo $next_url.'<br>';
         	$url_data[] = $next_url;
             // Add URL to sitemap
        /*     fwrite ($pf, "  <url>\n" .
