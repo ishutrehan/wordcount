@@ -132,7 +132,7 @@
     <script src="js/contact-form-script.js"></script>  -->  
     <script src="js/main.js"></script>
   <script src="assets/jquery.confirm/jquery.confirm.js"></script>
-  <script src="https://wordcount.weglot.com/js/routing?callback=fos.Router.setData"></script>
+  <script src="https://wordcount.weglot.com/js/routing"></script>
    <!-- <script src="assets/blockBlock/adscript.js"></script>
     <script src="assets/blockBlock/blockBlock.jquery.js"></script>
     <script src="assets/js/script.js"></script>
