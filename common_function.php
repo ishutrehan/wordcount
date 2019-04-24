@@ -3,9 +3,6 @@
 function getinboundLinks($domain_name) {
 	$urls = array();
 	if(is_url_exist($domain_name.'/sitemap.xml')) {
-		echo "test";
-		die;
-
 		$DomDocument = new DOMDocument();
 		$DomDocument->preserveWhiteSpace = false;
 		$DomDocument->load($domain_name.'/sitemap.xml');
