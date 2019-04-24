@@ -290,7 +290,7 @@ function Scan ($url)
             return false;
         }
     }
-
+    echo $url;
     $html = GetPage ($url);
     $html = trim ($html);
     if ($html == "") return true;  // Return on empty page
@@ -308,7 +308,7 @@ function Scan ($url)
     $html = substr ($html, $first_anchor);    // Start processing from first anchor
 
     $a1   = explode ("<a ", $html);
-   
+
     $url_data = [];
     foreach ($a1 as $next_url)
     {
