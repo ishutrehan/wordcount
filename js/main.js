@@ -3,10 +3,9 @@ jQuery(function(){
     jQuery('p.error').remove();
      
     event.preventDefault();
-     jQuery.ajax({
-      url: Routing.generate('weglot_word_count_ajax_data'),
-      type: "GET",
-      dataType: 'json',
+    jQuery.ajax({
+      url: "ajax_callback.php",
+      type: "POST",
       data:jQuery('.submit_url').serialize(),
       beforeSend: function(){
         jQuery('.result_section').show();
