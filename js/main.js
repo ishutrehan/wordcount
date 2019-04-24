@@ -3,9 +3,9 @@ jQuery(function(){
     jQuery('p.error').remove();
      
     event.preventDefault();
-    jQuery.ajax({
-      url: "ajax_callback.php",
-      type: "POST",
+     jQuery.ajax({
+      url: 'https://wordcount.weglot.com/',
+      type: "GET",
       data:jQuery('.submit_url').serialize(),
       beforeSend: function(){
         jQuery('.result_section').show();
