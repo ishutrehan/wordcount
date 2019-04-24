@@ -308,6 +308,9 @@ function Scan ($url)
     $html = substr ($html, $first_anchor);    // Start processing from first anchor
 
     $a1   = explode ("<a ", $html);
+    echo "<pre>";
+    print_r($a1);
+    echo "</pre>";
     $url_data = [];
     foreach ($a1 as $next_url)
     {
@@ -327,7 +330,6 @@ function Scan ($url)
 
         if (Scan ($next_url))
         {
-        	echo $next_url.'<br>';
         	$url_data[] = $next_url;
             // Add URL to sitemap
        /*     fwrite ($pf, "  <url>\n" .
