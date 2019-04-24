@@ -1,7 +1,7 @@
 <?php 
 
  // Set the output file name.
-    // define ("OUTPUT_FILE", "sitemap.xml");
+    define ("OUTPUT_FILE", "sitemap.xml");
     
 
     // Set the start URL. Example: define ("SITE", "https://www.example.com");
@@ -214,11 +214,11 @@ function Scan ($url)
 
     $scanned[] = $url;  // Add URL to scanned array
 
-    /*if (SkipURL ($url))
+    if (SkipURL ($url))
     {
         // echo "Skip URL $url" . NL;
         return false;
-    }*/
+    }
     
     // Remove unneeded slashes
     if (substr ($url, -2) == "//") 
@@ -308,7 +308,7 @@ function Scan ($url)
     $html = substr ($html, $first_anchor);    // Start processing from first anchor
 
     $a1   = explode ("<a ", $html);
-
+   
     $url_data = [];
     foreach ($a1 as $next_url)
     {
@@ -321,7 +321,7 @@ function Scan ($url)
         $next_url = GetHREFValue ($next_url);
         
         // Do all skip checks and construct full URL
-        $next_url = 	 ($url, $next_url);
+        $next_url = ValidateURL ($url, $next_url);
         
         // Skip if url is not valid
         if ($next_url == false) continue;
