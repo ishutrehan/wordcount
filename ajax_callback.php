@@ -48,8 +48,7 @@ if(isset($_POST) && !empty($_POST)){
 			    	}
 			    }
 			}
-
-						
+		
 			$html = '<table class="result_table" cellpadding="10"><tbody>';
 			$total_words = 0;
 			foreach ($matches as $key => $value) {
