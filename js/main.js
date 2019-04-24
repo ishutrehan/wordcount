@@ -4,7 +4,7 @@ jQuery(function(){
      
     event.preventDefault();
      jQuery.ajax({
-      url: 'https://wordcount.weglot.com/data',
+      url: Routing.generate('weglot_word_count_ajax_data'),
       type: "GET",
       dataType: 'json',
       data:jQuery('.submit_url').serialize(),
