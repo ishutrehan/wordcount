@@ -290,7 +290,6 @@ function Scan ($url)
             return false;
         }
     }
-    echo $url;
 
     $html = GetPage ($url);
     $html = trim ($html);
